@@ -57,14 +57,32 @@ $\tilde{G}$ is cellularly embedded. In the figure below, a cellularly embedded g
   <figcaption>Figure 2. A cellularly embedded graph and associated ribbon graph. </figcaption>
 </figure>
 <br>
+<br>
 
-In the module *ribbon_graph_polynomial.py*, the function *embed_graph_canvas(g,v)* can be used to draw  the embedded graph of the figure above. 
+In the module *ribbon_graph_polynomial.py*, the function *embed_graph_canvas(g,v)* can be used to draw  the embedded graph of the figure above. The parameter
+$g$ is the genus of the containing surface, in this case $g=1$ since the surface is a torus, while $v$ is the number of vertices of the embedded graph, $v=3$ in our
+case.
 
 ```python
 aristas = embed_graph_canvas(1,3)
 print(aristas)
 ```
 <br>
+
+<figure>
+ <img src="/images/ejemplo.JPG" width="700" >
+  <figcaption>Figure 2. A cellularly embedded graph and associated ribbon graph. </figcaption>
+</figure>
+
+As a result we obtain the embedded graph represented by an array named *aristas* of size $(2e,2)$, where $e$ is the number of edges of the embedded graph and the values 
+$aristas[i,:]$ and $aristas[i+e,:]$ represent the endpoints of the same arc of the embedded graph. 
+
+$$ [[1 ,1],[0, 0],[0, 1],[2, 2],[2, 1],[1, 3],[1, 2],[2, 0],[0, 2],[1, 0]] $$
+
+For instance, the entrances  $[0,0]$ and  $[1,2]$ represent the two endpoint of the same arc, and indicate that the $0$-th point around 
+the $0$-th vertex of the graph is connected to the second point around the vertex with label $1$.    
+
+
 ### Ribbon Graph Polynomial
 
 The ribbon graph polynomial is an invariant of ribbon graphs introduced  by Bollobás and Riordan. This polynomial generalizes the classical Tutte polynomial. 
