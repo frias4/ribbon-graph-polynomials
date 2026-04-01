@@ -10,7 +10,7 @@ the ribbon graph polynomial and Penrose polynomial, respectively, of a given emb
 <br>
 <br>
 
-### Embedded Graphs and Ribbon Graphs
+## Embedded Graphs and Ribbon Graphs
 
 A surface is a topological manifold of dimension 2. In the case of compact connected surfaces there is a complete classification theorem: 
 every compact connected surface $F$ is homeonmorphic to the $2$-sphere, to the connected sum of $g\geq 1$ 
@@ -59,7 +59,7 @@ $\tilde{G}$ is cellularly embedded. In the figure below, a cellularly embedded g
 <br>
 <br>
 
-In the module *ribbon_graph_polynomial.py*, the function *embed_graph_canvas(g,v)* can be used to draw  the embedded graph of the figure above. The parameter
+In the module *embedded_graph_canvas.py*, the function *embed_graph_canvas(g,v)* can be used to draw  the embedded graph of Figure 2. The parameter
 $g$ is the genus of the containing surface, in this case $g=1$ since the surface is a torus, while $v$ is the number of vertices of the embedded graph, $v=3$ in our
 case.
 
@@ -69,27 +69,32 @@ print(aristas)
 ```
 <br>
 
+A canvas is displayed with a polygon (square, since $g=1$) representing the surface and a set of blue discs representing the vertices of the embedded graph (left-hand
+image in Figure 3). The user can draw the edges of the embedded graph using the mouse or pointer to mark the vertices of each arc, and pressing *enter* when an arc is complete. When the embedded graph is complete, the user should press *enter* button. In the right side image in Figure 3, the embedded graph of Figure 2 was drawn.
+
 <figure>
- <img src="/images/ejemplo.JPG" width="700" >
-  <figcaption>Figure 2. A cellularly embedded graph and associated ribbon graph. </figcaption>
+ <img src="/images/ejemplo.jpg" width="700" >
+  <figcaption>Figure 3. The Ribbon Graph Canvas to draw an embedded graph. </figcaption>
 </figure>
+<br>
+<br>
 
 As a result we obtain the embedded graph represented by an array named *aristas* of size $(2e,2)$, where $e$ is the number of edges of the embedded graph and the values 
-$aristas[i,:]$ and $aristas[i+e,:]$ represent the endpoints of the same arc of the embedded graph. 
+$aristas[i,:]$ and $aristas[i+e,:]$ represent the endpoints of the same edge of the embedded graph. In our example we get the array:
 
 $$ [[1 ,1],[0, 0],[0, 1],[2, 2],[2, 1],[1, 3],[1, 2],[2, 0],[0, 2],[1, 0]] $$
 
-For instance, the entrances  $[0,0]$ and  $[1,2]$ represent the two endpoint of the same arc, and indicate that the $0$-th point around 
+Note that the entrances  $[0,0]$ and  $[1,2]$ in the array represent the two endpoint of the same edge of the graph, and indicate that the $0$-th point around 
 the $0$-th vertex of the graph is connected to the second point around the vertex with label $1$.    
+<br>
 
-
-### Ribbon Graph Polynomial
+## Ribbon Graph Polynomial
 
 The ribbon graph polynomial is an invariant of ribbon graphs introduced  by Bollobás and Riordan. This polynomial generalizes the classical Tutte polynomial. 
-As in the case of Tutte polynomial, this polynomial has different formulations, includig recursive contraction-deletion relations and formulations via subgraph states. 
-In the following definition a formulation of the Ribbon Graph Polynomial is presented in which all possible subgraph states are considered.  
+As in the case of Tutte polynomial, this polynomial has different formulations, includig recursive contraction-deletion relations and formulations via subgraph states
+(subgraphs having the same set of vertices as the original graph, but probably less edges). In the following definition a formulation of the Ribbon Graph Polynomial is presented in which all possible subgraph states are considered.  
 
-**Definition** The ribbon *graph polynomial*, $R(G;x,y,z,w)\in Z[x,y,z,w]/ \langle w^{2}-w \rangle$, is defined for a ribbon graph $G$ as
+**Definition.** The ribbon *graph polynomial*, $R(G;x,y,z,w)\in Z[x,y,z,w]/ \langle w^{2}-w \rangle$, is defined for a ribbon graph $G$ as
 
 $$ R(G; x,y,z,w)=\sum_{\substack{E(A)\subseteq E(G),V(A)=V(G)}} (x-1)^{r(G)-r(A)}y^{n(A)}z^{k(A)-f(A)+n(A)}w^{t(A)}  $$
 
@@ -98,35 +103,52 @@ The values $e(A), v(A), f(A), k(A)$ are the numbers of edges, vertices, boundary
 while $r(A) = v(A)- k(A)$ and  $n(A) = e(G)- r(G)$ are the rank and nullity of $A$. The value $t(A)$ is equal to $0$ or $1$ if the ribbon graph $A$ is orientable or not,
 respectively. 
 
-
+The ribbon graph polynomial is a polynomial in four variables in the general case, however, when the containing surface is orientable, every subgraph state is 
+orientable and then, the exponent of $w$ is allways equal to $0$ and the ribbon graph polynomial has only three variables. 
 The Tutte polynomial can be computed as a particular evaluation of the ribbon graph polynomial \cite{books/daglib/0037859}. 
-\begin{lem}The Tutte polynomial of the graph $G$ can be obtained as $T(G;x,y)=R(x,y-1,1,1)$
-\end{lem}
+
+**Lemma.** The Tutte polynomial of the graph $G$ can be obtained as $T(G;x,y)=R(x,y-1,1,1)$
+
 As a consequence of this relation, both polynomials share topological information concerning topological information of the graphs, such as connectivity and 
 the existence of spanning subgraphs, but the ribbon graph polynomial encode additional information concerning the surface nature of ribbon graphs such as orientability
 and the number of boundary components. 
-\[
-4*x + y**3*z**2 + 2*y**2*z**2 + y**2*(x - 1) + 3*y**2 + y*(x - 1)**2 + 5*y*(x - 1) + 9*y + (x - 1)**2 + 1
-\}
+<br>
 
+For the ribbon graph in Figure 2, use the function *RGpolynomial(aristas)* in module *ribbon_graph_polynomial.py* to compute its ribbon graph polynomial, which is presented below.
 
-### Penrose Polynomial
+```python
+P=RGpolynomial(aristas)
+print(P)
+```
+<br>
+
+$$4*x + y**3*z**2 + 2*y**2*z**2 + y**2*(x - 1) + 3*y**2 + y*(x - 1)**2 + 5*y*(x - 1) + 9*y + (x - 1)**2 + 1$$
+
+<br>
+
+## Penrose Polynomial
 
 The Penrose polynomial is an invariant of graphs embedded in surfaces which is related to important problems in graph theory, including graph colourings. 
-This polynomial was suggested as an invariant for planar graphs in 1971  by Roger Penrose \cite{Penrose1971} and extended for graphs embedded in surfaces by 
-Ellis-Monaghan and Moffat in 2013 \cite{ELLISMONAGHAN2013424}. 
-![Logo](/images/medial.JPG)
+This polynomial was suggested as an invariant for planar graphs in 1971  by Roger Penrose  and extended for graphs embedded in surfaces by 
+Ellis-Monaghan and Moffat in 2013. 
+
+<figure>
+  <img src="/images/medial.JPG" width="700" >
+  <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
+</figure>
+<br>
+<br>
 
 In order to compute the Penrose polynomial of a cellularly embedded graph $G$ in a closed surface $F$, first, construct the medial graph $G_m$ associated to $G$, 
 which has a vertex of degree $4$ on each edge of $G$. We connect the vertices of $G_{m}$ with arcs running parallel to the face boundaries of $G$ in $F$ to obtain the 
-edges of $G_m$. We show in Figure \ref{} the construction of the medial graph $G_{m}$ for the graph $G$ embedded in a torus. An important property of a medial graph is
-that its complementary regions in the surface $F$ can be coloured in a checker-board fashion (see Figure \ref{fig:f4}). As in the case of classical polynomials invariants
+edges of $G_m$. We show in Figure 4 the construction of the medial graph $G_{m}$ for the graph $G$ embedded in a torus. An important property of a medial graph is
+that its complementary regions in the surface $F$ can be coloured in a checker-board fashion (see Figure 4). As in the case of classical polynomials invariants
 in knto theory, every vertex of the medial graph $G_m$ admits three possible smoothing states: crossing state, white smoothing (connecting the two white regions concerning 
 the vertex) and black smoothing. A \emph{Penrose state} of $G_m$ is a ribbon graph obtained after smoothing each vertex of $G_m$ as a white smoothing or a crossing state. 
 Then, if $G$ has $n$ edges, its medial graph $G_m$ admits $2^{n}$ Penrose states. The Penrose polynomial of graph $G$ is defined by:
 
      
-\begin{df}[Penrose polynomial]\label{df:pen} Given a cellularly embedded graph $G$  in a closed surface $F$, with medial graph $G_{m}$, the \emph{Penrose polynomial} of $G$, 
+**Definition.**  Given a cellularly embedded graph $G$  in a closed surface $F$, with medial graph $G_{m}$, the *Penrose polynomial* of $G$, 
 $P(G; \lambda)\in Z[\lambda]$, is defined by:
 
 \[ P(G; \lambda)=\sum_{s\in \mathcal{P}(G_{m})} (-1)^{cr(s)}\lambda^{c(s)} \]
@@ -134,11 +156,11 @@ where the sum is taken over all Penrose states $\mathcal{P}(G_{m})$ of $G_m$, wh
 Penrose state $s$.
 \end{df}
 
-\[
-2*z**3 - 6*z**2 + 4*z
-\]
 
-\section{Implementations}
+$$ 2*z**3 - 6*z**2 + 4*z $$
+
+
+**Implementations**
 
 
 We propose a Python implementation to compute two polynomials of ribbon and embedded graphs, namely, the ribbon graph polynomial and the Penrose polynomial. 
