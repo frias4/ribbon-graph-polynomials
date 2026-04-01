@@ -122,7 +122,9 @@ print(P)
 ```
 <br>
 
-$$4*x + y**3*z**2 + 2*y**2*z**2 + y**2*(x - 1) + 3*y**2 + y*(x - 1)**2 + 5*y*(x - 1) + 9*y + (x - 1)**2 + 1$$
+```python
+ 4*x + y**3*z**2 + 2*y**2*z**2 + y**2*(x - 1) + 3*y**2 + y*(x - 1)**2 + 5*y*(x - 1) + 9*y + (x - 1)**2 + 1 
+``` 
 
 <br>
 
@@ -141,89 +143,93 @@ Ellis-Monaghan and Moffat in 2013.
 
 In order to compute the Penrose polynomial of a cellularly embedded graph $G$ in a closed surface $F$, first, construct the medial graph $G_m$ associated to $G$, 
 which has a vertex of degree $4$ on each edge of $G$. We connect the vertices of $G_{m}$ with arcs running parallel to the face boundaries of $G$ in $F$ to obtain the 
-edges of $G_m$. We show in Figure 4 the construction of the medial graph $G_{m}$ for the graph $G$ embedded in a torus. An important property of a medial graph is
-that its complementary regions in the surface $F$ can be coloured in a checker-board fashion (see Figure 4). As in the case of classical polynomials invariants
-in knto theory, every vertex of the medial graph $G_m$ admits three possible smoothing states: crossing state, white smoothing (connecting the two white regions concerning 
-the vertex) and black smoothing. A \emph{Penrose state} of $G_m$ is a ribbon graph obtained after smoothing each vertex of $G_m$ as a white smoothing or a crossing state. 
-Then, if $G$ has $n$ edges, its medial graph $G_m$ admits $2^{n}$ Penrose states. The Penrose polynomial of graph $G$ is defined by:
+edges of $G_m$. We show in Figure 4 the construction of the medial graph $G_{m}$ for the graph $G$ embedded in a torus from Figure 2. An important property of a medial graph is that its complementary regions in the surface $F$ can be coloured in a checker-board fashion (see Figure 4). 
+
+As in the case of classical polynomials invariants in knto theory, every vertex of the medial graph $G_m$ admits three possible smoothing states: crossing state, white smoothing (connecting the two white regions concerning  the vertex) and black smoothing. A \emph{Penrose state} of $G_m$ is a ribbon graph obtained after smoothing each vertex of $G_m$ as a white smoothing or a crossing state. Then, if $G$ has $n$ edges, its medial graph $G_m$ admits $2^{n}$ Penrose states. The Penrose polynomial of graph $G$ is defined by:
 
      
 **Definition.**  Given a cellularly embedded graph $G$  in a closed surface $F$, with medial graph $G_{m}$, the *Penrose polynomial* of $G$, 
 $P(G; \lambda)\in Z[\lambda]$, is defined by:
 
-\[ P(G; \lambda)=\sum_{s\in \mathcal{P}(G_{m})} (-1)^{cr(s)}\lambda^{c(s)} \]
+$$P(G; \lambda)=\sum_{s\in \mathcal{P}(G_{m})} (-1)^{cr(s)}\lambda^{c(s)} $$ <br>
 where the sum is taken over all Penrose states $\mathcal{P}(G_{m})$ of $G_m$, while $cr(s)$ and $c(s)$ are the numbers of crossing vertex states and boundary components of 
 Penrose state $s$.
-\end{df}
+
+The function *Penrose_polynomial(aristas)* in module *Penrose_polynomial.py* allows us to compute the Penrose polynomial of a given embedded graph. For the graph in 
+Figure 2, we apply the function *RGpolynomial(aristas)*  to compute its ribbon graph polynomial, which is presented below.
+
+```python
+P = Penrose_polynomial(aristas)
+print(P)
+```
+<br>
+
+```python
+ 2*z**3 - 6*z**2 + 4*z 
+``` 
+<br>
 
 
-$$ 2*z**3 - 6*z**2 + 4*z $$
+Note that 
 
 
-**Implementations**
+## Implementations
 
 
-We propose a Python implementation to compute two polynomials of ribbon and embedded graphs, namely, the ribbon graph polynomial and the Penrose polynomial. 
-The implementations are divided into three main modules: $embedded\_graph\_canvas.py$,
- $ribbon\_graph\_polynomial.py$ and $Penrose\_polynomial.py$. We briefly describe each module.  
+We briefly describe each module in this project and the main functions in each module.  
  
-
-
-\begin{itemize}
-
-\item $\textbf{embedded\_graph\_canvas.py}$ \\
+### embedded_graph_canvas.py  <br>
 This module contains functions to allow the user to draw an embedded graph in interactive manner using the mouse or pointer. The main function is called 
-$embed\_graph\_canvas(g,v)$, whose parameters are the genus ($g$) of the compact orientable surface in which the graph will be embedded and the number of vertices 
-of the graph($v$). The specific tasks in function $embed\_graph\_canvas(g,v)$ are  distributed in the following set of sequential functions:   
+*embed_graph_canvas(g,v)*, whose parameters are the genus ($g$) of the compact orientable surface in which the graph will be embedded and the number of vertices 
+of the graph($v$). The specific tasks in function *embed_graph_canvas(g,v)* are  distributed in the following set of sequential functions:   
 
-\begin{itemize}
+```python
+def embed_graph_canvas(g,v):
+    polygon, vertex = draw_canvas(g,v)
+    segments = draw_graph()
+    segments1, seg = codify_arcs(segments, polygon, vertex)
+    aristas = simplify_arcs(segments1,seg)
+    return aristas
+```
 
-\item[] $draw\_canvas(g,v):$ This function receives as input data the genus of the surface ($g$) and the number of vertices of the embedded graph ($v$) and it returns 
+- *draw_canvas(g,v):* This function receives as input data the genus of the surface ($g$) and the number of vertices of the embedded graph ($v$) and it returns 
 the coordinates of the vertices of the polygon that represents the surface and the coordinates of  the vertices of the embedded graph.
-\item[] $draw\_graph()$: In this function the canvas (polygon and 'fat' vertices of the graph) to plot the embedded graph is drawn. The user can draw the embedded 
+- *draw_graph():* In this function the canvas (polygon and 'fat' vertices of the graph) to plot the embedded graph is drawn. The user can draw the embedded 
 graph in the canvas using the mouse or pointer. The output of the function are the endpoints of the arcs provided by user.  
-\item[] $codify\_arcs(segments, polygon, vertex):$ This auxiliary function uses the array of endpoints of arcs provided by user $segments$ and the arrays $polygon$ 
+- *codify_arcs(segments, polygon, vertex):* This auxiliary function uses the array of endpoints of arcs provided by user $segments$ and the arrays $polygon$ 
 and $vertex$ containing the vertices of the polygon and the vertices of the graph, respectively, to codify each endpoint of an arc indicating the edge or the polygon 
 or the vertex of the embedded graph to which it is closer, as well as the order in which it appears in the corresponding set.     
-\item[] $simplify\_arcs(segments1,seg):$ The arcs provided by user in the surface canvas, are merged to form the edges of the embedded graph.  
-\end{itemize} 
-The output of function  $embed\_graph\_canvas(g,v)$ is an array called $aristas$ of size $(2e,2)$, where $e$ is the number of edges of the embedded graph and the values 
-$aristas[i,:]$ and $aristas[i+e,:]$ represent the endpoints of the same arc of the embedded graph. The array $aristas$ corresponding to the embedded graph in Figure \ref{} 
-are shown bellow. For instance, in this example, the entrances  $[0,0]$ and  $[1,2]$ represent the two endpoint of the same arc, and indicate that the $0$-th point around 
-the $0$-th vertex of the graph is connected to the second point around the vertex with label $1$.    
-\[ [[1 ,1],[0, 0],[0, 1],[2, 2],[2, 1],[1, 3],[1, 2],[2, 0],[0, 2],[1, 0]] \]
+- *simplify_arcs(segments1,seg):* The arcs provided by user in the surface canvas, are merged to form the edges of the embedded graph.  
+ 
+The output of function  *embed_graph_canvas(g,v)* is an array called $aristas$ of size $(2e,2)$, where $e$ is the number of edges of the embedded graph and the values 
+$aristas[i,:]$ and $aristas[i+e,:]$ represent the endpoints of the same arc of the embedded graph. 
 
-%def embed_graph_canvas(g,v):
-%    polygon, vertex = draw_canvas(g,v)
-%    segments = draw_graph()
-%    segments1, seg = codify_arcs(segments, polygon, vertex)
-%    aristas = simplify_arcs(segments1,seg)
-%    return aristas
-      
-\item $\textbf{ribbon\_graph\_polynomial.py}$\\
+ 
+### ribbon_graph_polynomial.py
 In the present module contains functions to compute the Penrose polynomial of and embedded graph in a closed orientable surface. The main function in the module is 
-$RGpolynomial(aristas)$. The input of this function, $aristas$, is a $(2e,2)$-size array in the format of the output of the function $embed\_graph\_canvas(g,v)$ from 
-the $\textbf{embedded\_graph\_canvas.py}$ module, which encodes the endpoints of the embedded graph. The secondary functions in the module are:
-\begin{itemize}
-\item[] $components(A,v):$ This function computes the number of components of graph state $A$.
-\item[] $faces(A,v):$ The function returns the number of faces or boundary components of graph state $A$.
-\item[]  $RGpolynomial\_state(A,v):$  This function computes the term contribution to the Penrose polynomial of the graph state $A$. The function $RGpolynomial(aristas)$ 
-computes and adds the contribution of every graph state with the function $RGpolynomial\_state(A,v)$. 
-\end{itemize} 
-\item $\textbf{Penrose\_polynomial.py}$
+*RGpolynomial(aristas)*. The input of this function, $aristas$, is a $(2e,2)$-size array in the format of the output of the function *embed_graph_canvas(g,v)* from 
+the *embedded_graph_canvas.py* module, which encodes the endpoints of the embedded graph. The secondary functions in the module are:
 
-\end{itemize}
+- *components(A,v):* This function computes the number of components of graph state $A$.
+- *faces(A,v):* The function returns the number of faces or boundary components of graph state $A$.
+- *RGpolynomial_state(A,v):*  This function computes the term contribution to the Penrose polynomial of the graph state $A$. The function *RGpolynomial(aristas)* 
+computes and adds the contribution of every graph state with the function *RGpolynomial_state(A,v)*. 
+  
+### Penrose\_polynomial.py
+
 
 
 \section{Aplications}
 
+## Use Case: Definition of polynomial invarints of lens spaces
 
-\begin{figure}
-  \centering
-    \includegraphics[width=12cm]{f49}%[width=8cm]{b2}
-  \caption{Poincaré homology sphere}
-  \label{fig:poinc}
-\end{figure}
+<figure>
+  <img src="/images/f49" width="700" >
+  <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
+</figure>
+<br>
+
+
 
 
 
