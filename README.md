@@ -234,9 +234,16 @@ Note that as we are using the graph state formulation to compute ribbon graph an
 
 ## Use Case: Definition of polynomial invarints of lens spaces
 
-We briefly describe the use of implementations of  
+We briefly describe the use of the implementations of ribbon graph polynomials and Penrose polynomial to propose polynomial invariants of lens spaces as presented in
+
+[1] J. Frías, J. C. Gómez-Larrañaga2, J. L. León-Medina, F. Manjarrez-Gutiérrez, *3-manifold polynomials* (submitted).
+
+A *lens space* is a compact connected 3-manifold without boundary, which can be decomposed as two  disjoint solid tori whicha are *glued* via an orientation reversing homemorphism between the boundary of the two tori. Then, a   
+
+It is a classical theorem in low-dimensional topology the classification of lens spaces:   
+
 <figure>
-  <img src="/images/f49" width="700" >
+  <img src="/images/f49.jpg" width="700" >
   <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
 </figure>
 <br>
