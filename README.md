@@ -172,8 +172,8 @@ print(P)
 
 ## Implementations
 
-
 We briefly describe each module in this project and the main functions in each module.  
+<br>
  
 ### embedded_graph_canvas.py  <br>
 This module contains functions to allow the user to draw an embedded graph in interactive manner using the mouse or pointer. The main function is called 
@@ -200,7 +200,7 @@ or the vertex of the embedded graph to which it is closer, as well as the order 
  
 The output of function  *embed_graph_canvas(g,v)* is an array called $aristas$ of size $(2e,2)$, where $e$ is the number of edges of the embedded graph and the values 
 $aristas[i,:]$ and $aristas[i+e,:]$ represent the endpoints of the same arc of the embedded graph. 
-
+<br>
  
 ### ribbon_graph_polynomial.py
 In the present module contains functions to compute the Penrose polynomial of and embedded graph in a closed orientable surface. The main function in the module is 
@@ -211,6 +211,8 @@ the *embedded_graph_canvas.py* module, which encodes the endpoints of the embedd
 - *faces(A,v):* The function returns the number of faces or boundary components of graph state $A$.
 - *RGpolynomial_state(A,v):*  This function computes the term contribution to the Penrose polynomial of the graph state $A$. The function *RGpolynomial(aristas)* 
 computes and adds the contribution of every graph state with the function *RGpolynomial_state(A,v)*. 
+<br>
+
   
 ### Penrose_polynomial.py
 
@@ -230,7 +232,7 @@ def Penrose_polynomial(aristas):
 ```
 
 Note that as we are using the graph state formulation to compute ribbon graph and Penrose polynomials, these algorithms have exponential complexity in the number of edges of the given embeded graph. In the case of ribbon graph polynomial of embedded graph $G$, all subgraph states are considered, in total $2^{E(G)}$ states. In the case of Penrose polynomial of $G$, we find all Penrose states of $G_m$, which are indexed by all possible subsets of $E(G)$, again we have $2^{E(G)}$ states Penrose states.  
-
+<br>
 
 ## Use Case: Definition of polynomial invarints of lens spaces
 
@@ -239,6 +241,12 @@ We briefly describe the use of the implementations of ribbon graph polynomials a
 [1] J. Frías, J. C. Gómez-Larrañaga2, J. L. León-Medina, F. Manjarrez-Gutiérrez, *3-manifold polynomials* (submitted).
 
 A *lens space* is a compact connected 3-manifold without boundary, which can be decomposed as two  disjoint solid tori whicha are *glued* via an orientation reversing homemorphism between the boundary of the two tori. Then, a   
+
+<figure>
+  <img src="/images/lens.PNG" width="700" >
+  <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
+</figure>
+<br>
 
 It is a classical theorem in low-dimensional topology the classification of lens spaces:   
 
