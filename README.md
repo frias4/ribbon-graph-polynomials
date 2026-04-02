@@ -145,7 +145,7 @@ In order to compute the Penrose polynomial of a cellularly embedded graph $G$ in
 which has a vertex of degree $4$ on each edge of $G$. We connect the vertices of $G_{m}$ with arcs running parallel to the face boundaries of $G$ in $F$ to obtain the 
 edges of $G_m$. We show in Figure 4 the construction of the medial graph $G_{m}$ for the graph $G$ embedded in a torus from Figure 2. An important property of a medial graph is that its complementary regions in the surface $F$ can be coloured in a checker-board fashion (see Figure 4). 
 
-As in the case of classical polynomials invariants in knto theory, every vertex of the medial graph $G_m$ admits three possible smoothing states: crossing state, white smoothing (connecting the two white regions concerning  the vertex) and black smoothing. A \emph{Penrose state} of $G_m$ is a ribbon graph obtained after smoothing each vertex of $G_m$ as a white smoothing or a crossing state. Then, if $G$ has $n$ edges, its medial graph $G_m$ admits $2^{n}$ Penrose states. The Penrose polynomial of graph $G$ is defined by:
+As in the case of classical polynomials invariants in knto theory, every vertex of the medial graph $G_m$ admits three possible smoothing states: crossing state, white smoothing (connecting the two white regions concerning  the vertex) and black smoothing. A *Penrose state* of $G_m$ is a ribbon graph obtained after smoothing each vertex of $G_m$ as a white smoothing or a crossing state. Then, if $G$ has $n$ edges, its medial graph $G_m$ admits $2^{n}$ Penrose states. The Penrose polynomial of graph $G$ is defined by:
 
      
 **Definition.**  Given a cellularly embedded graph $G$  in a closed surface $F$, with medial graph $G_{m}$, the *Penrose polynomial* of $G$, 
@@ -168,9 +168,6 @@ print(P)
  2*z**3 - 6*z**2 + 4*z 
 ``` 
 <br>
-
-
-Note that 
 
 
 ## Implementations
@@ -215,14 +212,29 @@ the *embedded_graph_canvas.py* module, which encodes the endpoints of the embedd
 - *RGpolynomial_state(A,v):*  This function computes the term contribution to the Penrose polynomial of the graph state $A$. The function *RGpolynomial(aristas)* 
 computes and adds the contribution of every graph state with the function *RGpolynomial_state(A,v)*. 
   
-### Penrose\_polynomial.py
+### Penrose_polynomial.py
 
+The *Penrose_polynomial.py* module is devoted to compute the Penrose polynomial of an embedded graph in an orientable surface. The main function in this module is *Penrose_polynomial(aristas)*, which computes the Penrose polynomial of
+the embedded graph described by array *aristas*. Note that in the definition of function *Penrose_polynomial()*, the algorithm iterates over all edges of the embedded graph to determine all possible Penrose states of the medial graph. For each one of these Penrose states its contribution to the Penrose polynomial is computes using the auxiliary function *faces(A,I)* that counts the number of boundary components of Penrose state defined by set of indexes *I*.  
 
+```python
+def Penrose_polynomial(aristas):
+    z = symbols('z')
+    P = 0
+    a = int(len(aristas[:,0])/2)
 
-\section{Aplications}
+    for i in it.product([0, 1], repeat = a):
+        I = np.asarray(i)
+        P = P + (-1)**len(I[ I == 1]) * z **faces(aristas,np.concatenate((I,I), axis=0))
+    return P
+```
+
+Note that as we are using the graph state formulation to compute ribbon graph and Penrose polynomials, these algorithms have exponential complexity in the number of edges of the given embeded graph. In the case of ribbon graph polynomial of embedded graph $G$, all subgraph states are considered, in total $2^{E(G)}$ states. In the case of Penrose polynomial of $G$, we find all Penrose states of $G_m$, which are indexed by all possible subsets of $E(G)$, again we have $2^{E(G)}$ states Penrose states.  
+
 
 ## Use Case: Definition of polynomial invarints of lens spaces
 
+We briefly describe the use of implementations of  
 <figure>
   <img src="/images/f49" width="700" >
   <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
