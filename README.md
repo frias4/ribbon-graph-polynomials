@@ -234,25 +234,47 @@ def Penrose_polynomial(aristas):
 Note that as we are using the graph state formulation to compute ribbon graph and Penrose polynomials, these algorithms have exponential complexity in the number of edges of the given embeded graph. In the case of ribbon graph polynomial of embedded graph $G$, all subgraph states are considered, in total $2^{E(G)}$ states. In the case of Penrose polynomial of $G$, we find all Penrose states of $G_m$, which are indexed by all possible subsets of $E(G)$, again we have $2^{E(G)}$ states Penrose states.  
 <br>
 
-## Use Case: Definition of polynomial invarints of lens spaces
+## Use Case: Definition of polynomial invariants of lens spaces
 
 We briefly describe the use of the implementations of ribbon graph polynomials and Penrose polynomial to propose polynomial invariants of lens spaces as presented in
 
 [1] J. Frías, J. C. Gómez-Larrañaga2, J. L. León-Medina, F. Manjarrez-Gutiérrez, *3-manifold polynomials* (submitted).
 
-A *lens space* is a compact connected 3-manifold without boundary, which can be decomposed as two  disjoint solid tori whicha are *glued* via an orientation reversing homemorphism between the boundary of the two tori. Then, a   
+A *lens space* is a compact connected 3-manifold without boundary, which can be decomposed as two  disjoint solid tori $H_1$ and $H_2$, which are *glued* together via an orientation reversing homemorphism between their  boundaries $\varphi: \partial H_1 \rightarrow \partial H_2$. Let $\alpha\in\partial H_1$ and $\beta\in \partial H_2$ simple meridian curves en each solid torus ($\alpha$ and $\beta$ are the boundary of meridian discs in $H_1$ and $H_2$). Up to homeomorphism, the lens space is determined by the isotopy class of $\varphi(\alpha) in H_2$. Every  simple closed curve $\gamma$ in a torus $T$ is parametrized, up to isotopy, by a pair of integers $(p,q)$, where $p$ and $q$ are the numbers of turns in the longitudinal and merional directions of $\gamma$ around $T$. For instance, the blue curve in Figure 5, has parameters $(3,1)$.  
 
 <figure>
-  <img src="/images/lens.PNG" width="700" >
-  <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
+  <img src="/images/lens.png" width="300" >
+  <figcaption>Figure 5. Heegaard graph associated to lens space $L(3,1)$. </figcaption>
 </figure>
 <br>
 
-It is a classical theorem in low-dimensional topology the classification of lens spaces:   
+In conlusion, a lens space is complete described by a pair of integers $(p,q)$ which parameterize the curve $\varphi(\aplha)$ in $H_2$. In this case, denote the lens space by $L(p,q)$. It is a classical theorem in low-dimensional topology the classification of lens spaces:   Two lens spaces $L(p,q)$ and $L(p',q')$ are homeomorphic if and only if $p'=p$ and $q'\equiv \pm q ^{\pm 1}(mod p)$. 
 
+If a lens space $L(p,q)=H_1\cup H_2$ decomposes as before, under the assumption of minimality and transversality of $\varphi(\alpha)\cap \beta$, we obtain an embedded graph in the torus $\partial H_2$, whose vertices are the points in $\varphi(\alpha)\cap \beta$ and the edges are the complementary arcs of the vertices in $\varphi(\alpha)\cup \beta$. We call this embedded graph, the Heegaard graph associated to lens space $L(p,q)$, and it is essentialy unique.
+
+After computing the ribbon graph, Penrose and Tutte polynomials for few lens spaces, it was noticed that homeomorphic lens spaces had same polynomials, as show in the following list of Penrose polynomial for the first lens spaces: 
+
+[3,1] z**4 + z**3 - 6*z**2 + 4*z
+[3,2] z**4 + z**3 - 6*z**2 + 4*z
+[4,1] z**6 - 8*z**5 + 39*z**4 - 88*z**3 + 88*z**2 - 32*z
+[4,3] z**6 - 8*z**5 + 39*z**4 - 88*z**3 + 88*z**2 - 32*z
+[5,1] z**6 + 21*z**5 - 110*z**4 + 200*z**3 - 160*z**2 + 48*z
+[5,2] z**5 - 10*z**4 + 45*z**3 - 64*z**2 + 28*z
+[5,3] z**5 - 10*z**4 + 45*z**3 - 64*z**2 + 28*z
+[6,1] z**8 - 12*z**7 + 123*z**6 - 532*z**5 + 1140*z**4 - 1312*z**3 + 784*z**2 - 192*z
+[6,5] z**8 - 12*z**7 + 123*z**6 - 532*z**5 + 1140*z**4 - 1312*z**3 + 784*z**2 - 192*z
+[7,1] z**8 + 113*z**7 - 798*z**6 + 2324*z**5 - 3640*z**4 + 3248*z**3 - 1568*z**2 + 320*z
+
+Thanks to this observation, we were able to show:
+
+*Theorem.* The Penrose, Tutte and ribbon graph polynomials computed for Heegaard graphs are invariants of lens spaces. 
+
+In order to prove that these invariants are complete, it is necessary to recover the parameters $p$ and $q$ from polynomials. Once again, the analysis of the reduced databases of polynomials for lens spaces led us to conclude and provide a proof that parameter $p$ can be recovered from Tutte and Penrose polynomial, while parameter $q$ can be carachterized in some cases.
+
+We also explore the use of polynomials 
 <figure>
   <img src="/images/f49.jpg" width="700" >
-  <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
+  <figcaption>Figure 6. Poincaré homology sphere and its Heegaard graph. </figcaption>
 </figure>
 <br>
 
