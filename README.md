@@ -24,7 +24,7 @@ compact orientable surface of genus $g$ (homeomorphic to the connected sum of $g
 
 <br>
 <figure>
-  <img src="/images/identify.JPG" width="700" >
+  <img src="/images/identify.JPG" width="600" >
   <figcaption>Figure 1. A compact surface represented by a polygon with edges pairwise identifyed. </figcaption>
 </figure>
 <br>
@@ -53,7 +53,7 @@ $\tilde{G}$ is cellularly embedded. In the figure below, a cellularly embedded g
 
 <br>
 <figure>
- <img src="/images/embed.JPG" width="700" >
+ <img src="/images/embed.JPG" width="600" >
   <figcaption>Figure 2. A cellularly embedded graph and associated ribbon graph. </figcaption>
 </figure>
 <br>
@@ -135,7 +135,7 @@ This polynomial was suggested as an invariant for planar graphs in 1971  by Roge
 Ellis-Monaghan and Moffat in 2013. 
 
 <figure>
-  <img src="/images/medial.JPG" width="700" >
+  <img src="/images/medial.JPG" width="600" >
   <figcaption>Figure 4. Construction of medial graph and a checkerboard colouring of its complementary regions. </figcaption>
 </figure>
 <br>
@@ -248,37 +248,40 @@ A *lens space* is a compact connected 3-manifold without boundary, which can be 
 </figure>
 <br>
 
-In conlusion, a lens space is complete described by a pair of integers $(p,q)$ which parameterize the curve $\varphi(\aplha)$ in $H_2$. In this case, denote the lens space by $L(p,q)$. It is a classical theorem in low-dimensional topology the classification of lens spaces:   Two lens spaces $L(p,q)$ and $L(p',q')$ are homeomorphic if and only if $p'=p$ and $q'\equiv \pm q ^{\pm 1}(mod p)$. 
+In conlusion, a lens space is complete described by a pair of integers $(p,q)$ which parameterize the curve $\varphi(\alpha)$ in $H_2$. In this case, denote the lens space by $L(p,q)$. It is a classical theorem in low-dimensional topology the classification of lens spaces:   Two lens spaces $L(p,q)$ and $L(p',q')$ are homeomorphic if and only if $p'=p$ and $q'\equiv \pm q ^{\pm 1}(mod p)$. 
 
 If a lens space $L(p,q)=H_1\cup H_2$ decomposes as before, under the assumption of minimality and transversality of $\varphi(\alpha)\cap \beta$, we obtain an embedded graph in the torus $\partial H_2$, whose vertices are the points in $\varphi(\alpha)\cap \beta$ and the edges are the complementary arcs of the vertices in $\varphi(\alpha)\cup \beta$. We call this embedded graph, the Heegaard graph associated to lens space $L(p,q)$, and it is essentialy unique.
 
 After computing the ribbon graph, Penrose and Tutte polynomials for few lens spaces, it was noticed that homeomorphic lens spaces had same polynomials, as show in the following list of Penrose polynomial for the first lens spaces: 
 
-[3,1] z**4 + z**3 - 6*z**2 + 4*z
-[3,2] z**4 + z**3 - 6*z**2 + 4*z
-[4,1] z**6 - 8*z**5 + 39*z**4 - 88*z**3 + 88*z**2 - 32*z
-[4,3] z**6 - 8*z**5 + 39*z**4 - 88*z**3 + 88*z**2 - 32*z
-[5,1] z**6 + 21*z**5 - 110*z**4 + 200*z**3 - 160*z**2 + 48*z
-[5,2] z**5 - 10*z**4 + 45*z**3 - 64*z**2 + 28*z
-[5,3] z**5 - 10*z**4 + 45*z**3 - 64*z**2 + 28*z
-[6,1] z**8 - 12*z**7 + 123*z**6 - 532*z**5 + 1140*z**4 - 1312*z**3 + 784*z**2 - 192*z
-[6,5] z**8 - 12*z**7 + 123*z**6 - 532*z**5 + 1140*z**4 - 1312*z**3 + 784*z**2 - 192*z
-[7,1] z**8 + 113*z**7 - 798*z**6 + 2324*z**5 - 3640*z**4 + 3248*z**3 - 1568*z**2 + 320*z
+[3,1] z**4 + z**3 - 6*z**2 + 4*z <br>
+[3,2] z**4 + z**3 - 6*z**2 + 4*z <br>
+[4,1] z**6 - 8*z**5 + 39*z**4 - 88*z**3 + 88*z**2 - 32*z <br>
+[4,3] z**6 - 8*z**5 + 39*z**4 - 88*z**3 + 88*z**2 - 32*z <br>
+[5,1] z**6 + 21*z**5 - 110*z**4 + 200*z**3 - 160*z**2 + 48*z <br>
+[5,2] z**5 - 10*z**4 + 45*z**3 - 64*z**2 + 28*z <br>
+[5,3] z**5 - 10*z**4 + 45*z**3 - 64*z**2 + 28*z <br>
+[6,1] z**8 - 12*z**7 + 123*z**6 - 532*z**5 + 1140*z**4 - 1312*z**3 + 784*z**2 - 192*z <br>
+[6,5] z**8 - 12*z**7 + 123*z**6 - 532*z**5 + 1140*z**4 - 1312*z**3 + 784*z**2 - 192*z <br>
+[7,1] z**8 + 113*z**7 - 798*z**6 + 2324*z**5 - 3640*z**4 + 3248*z**3 - 1568*z**2 + 320*z <br>
 
-Thanks to this observation, we were able to show:
+Thanks to this observation, we were able to prove:
 
 *Theorem.* The Penrose, Tutte and ribbon graph polynomials computed for Heegaard graphs are invariants of lens spaces. 
 
-In order to prove that these invariants are complete, it is necessary to recover the parameters $p$ and $q$ from polynomials. Once again, the analysis of the reduced databases of polynomials for lens spaces led us to conclude and provide a proof that parameter $p$ can be recovered from Tutte and Penrose polynomial, while parameter $q$ can be carachterized in some cases.
+In order to prove that these invariants are complete, it is necessary to recover the parameters $p$ and $q$ from polynomials. Once again, the analysis of the reduced databases of polynomials for lens spaces led us to conclude and provide a proof that parameter $p$ can be recovered from Tutte and Penrose polynomial, while parameter $q$ can be characterized in some cases.
 
-We also explore the use of polynomials 
+We also explore the use of polynomials for more  complex 3-manifolds, in particular, we compute the Penrose and ribbon graph polynomials for the classical Heegaard graph of the Poincaré homology sphere:
+
 <figure>
-  <img src="/images/f49.jpg" width="700" >
+  <img src="/images/f49.jpg" width="600" >
   <figcaption>Figure 6. Poincaré homology sphere and its Heegaard graph. </figcaption>
 </figure>
 <br>
 
 
+```python
+z*12 − 24*z**11 + 553*z**10 − 6186*z**9 + 42664*z**8 − 193904*z**7+ 595168*z**6 − 1238528*z**5 + 1718528*z**4 − 1518592*z**3 + 770816*z**2 − 170496*z
+```
 
-
-
+It is an interesting question, how much topological and geometric information of a 3-manifold can be recovered from the graph polynomials applied to Heegaard graphs.
