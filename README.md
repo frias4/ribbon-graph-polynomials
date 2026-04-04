@@ -4,7 +4,7 @@ In the present project some tools are implemented in Python to draw and compute 
 be useful for mathematicians and scientists from other research areas interested in computing polynomials associated to graphs embedded in surfaces. 
 <br>
 <br>
-The project is divided into thre main modules *embedded_graph_canvas.py*, *ribbon_graph_polynomial.py* and *Penrose_polynomial.py*. The module *embedded_graph_canvas.py* 
+The project is divided into three main modules *embedded_graph_canvas.py*, *ribbon_graph_polynomial.py* and *Penrose_polynomial.py*. The module *embedded_graph_canvas.py* 
 allows the user to draw an embedded graph in an orientable surface, and the main goal of modules *ribbon_graph_polynomial.py* and *Penrose_polynomial.py* is to compute 
 the ribbon graph polynomial and Penrose polynomial, respectively, of a given embedded graph.
 <br>
@@ -13,37 +13,37 @@ the ribbon graph polynomial and Penrose polynomial, respectively, of a given emb
 ## Embedded Graphs and Ribbon Graphs
 
 A surface is a topological manifold of dimension 2. In the case of compact connected surfaces there is a complete classification theorem: 
-every compact connected surface $F$ is homeonmorphic to the $2$-sphere, to the connected sum of $g\geq 1$ 
+every compact connected surface $F$ is homeomorphic to the $2$-sphere, to the connected sum of $g\geq 1$ 
 torus (if $F$ is orientable) or to the connected sum of $g\geq 1$ projective planes (in the non-orientable case).
 <br>
 <br>
-A compact connected surface without boundary can be represented as a polygon with an even number of edges which are pairwise identifyed using the quotient topology. 
-In the following picture a torus is decomposed into an octagon after *cutting* along four curves having a common point. Each one of the  cutting curves is represented 
-by two edges in the octagon with the same color and type of arrow; the arrows indicate the orientation of the identification to recover the surface. In general, given an
-compact orientable surface of genus $g$ (homeomorphic to the connected sum of $g$ tori), it can be represented by a $4g$-gon with pairs of edges identifyed.   
+A compact connected surface without boundary can be represented by a polygon with an even number of edges which are pairwise identified and inducing the quotient topology. 
+In Figure 1, a torus is decomposed into an octagon after *cutting* along four curves having a common point. Each one of the  cutting curves is represented 
+by two edges in the octagon with the same color and type of arrow; the arrows indicate the orientation of the identification to recover the surface. In general, given a
+compact orientable surface of genus $g$ (homeomorphic to the connected sum of $g$ tori), it can be represented by a $4g$-gon with pairs of edges identified.   
 
 <br>
 <figure>
   <img src="/images/identify.JPG" width="600" >
-  <figcaption>Figure 1. A compact surface represented by a polygon with edges pairwise identifyed. </figcaption>
+  <figcaption>Figure 1. A compact surface represented by a polygon with edges pairwise identified. </figcaption>
 </figure>
 <br>
 <br>
 
-On the other hand, a graph is fundamental combinatorial object defined by two sets: a set of vertices (V), and a set of edges (E). In recent years the study of graphs 
+On the other hand, a graph is a fundamental combinatorial object defined by two sets: a set of vertices (V), and a set of edges (E). In recent years, the study of graphs 
 and the spaces in which they can be embedded is taking relevance, particularly, the understanding of  embedding of graphs in surfaces is an active research topic.
 
 
-**Definition** A graph $G(V,E)$ is *cellularly embedded* in a compact connected surface $F$ if $G\subset F$ is such that the edges of $G$ are simple arcs
+**Definition.** A graph $G=(V,E)$ is *cellularly embedded* in a compact connected surface $F$ if $G\subset F$ is such that the edges of $G$ are simple arcs
 which intersect at their endpoints in vertices, and such that each component in $F\setminus G$ is homeomorphic to a disc. Two graphs $G_1$  and $G_2$ cellularly
-embedded in a surface $F$ are *isomorphic* as embedded graphs is there is a homeomorphism $\varphi: F\rightarrow F$ such that $\varphi|_{G_1}: G_1\rightarrow G_2$ 
+embedded in  surfaces $F_1$ and $F_2$ are *isomorphic* as embedded graphs is there is a homeomorphism $\varphi: F_1\rightarrow F_2$ such that $\varphi|_{G_1}: G_1\rightarrow G_2$ 
 is an isomorphism of abstract graphs.      
 <br>
 
-A ribbon graph is a topological and combinatorial object that has a duality as a graph and a surface, namely:
+A ribbon graph is a topological and combinatorial object that has a duality as a graph and a as a surface, namely:
 <br>
 
-**Definition** A *ribbon graph* $G$ is a surface that has a handle decomposition: a set of $0$-handles or *fat vertices* $V$, and a set of disjoint $1$-handles or *bands*, 
+**Definition.** A *ribbon graph* $G$ is a surface that has a handle decomposition: a set of $0$-handles or *fat vertices* $V$, and a set of disjoint $1$-handles or *bands*, 
 $E$, attached to the $0$-handles in disjoint arcs on their boundaries.    
 
 There is a close relationship between cellularly embedded graphs in compact surfaces and ribbon graphs. Given a cellularly embedded graph $G\subset F$ in the surface $F$, 
@@ -58,7 +58,7 @@ $\tilde{G}$ is cellularly embedded. In the figure below, a cellularly embedded g
 </figure>
 <br>
 <br>
-
+ 
 In the module *embedded_graph_canvas.py*, the function *embed_graph_canvas(g,v)* can be used to draw  the embedded graph of Figure 2. The parameter
 $g$ is the genus of the containing surface, in this case $g=1$ since the surface is a torus, while $v$ is the number of vertices of the embedded graph, $v=3$ in our
 case.
